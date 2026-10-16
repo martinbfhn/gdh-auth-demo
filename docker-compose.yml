@@ -1,0 +1,15 @@
+services:
+  webapp:
+    build: .
+    container_name: gdh-auth-demo-prod  # Regla GDH innegociable
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8090:8000"
+    environment:
+      - APP_NAME=GDH Auth Demo
+      - ENVIRONMENT=production
+      - SERVER_HOST=greenserver
+      - CONTAINER_NAME=gdh-auth-demo-prod
+      - NEXO_URL=http://100.127.143.52:8000
+      - NEXO_API_KEY=demo_key
+      - SYSTEM_SLUG=gdh-auth-demo
