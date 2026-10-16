@@ -11,5 +11,5 @@ services:
       - SERVER_HOST=greenserver
       - CONTAINER_NAME=gdh-auth-demo-prod
       - NEXO_URL=http://100.127.143.52:8000
-      - NEXO_API_KEY=demo_key
+      - NEXO_API_KEY=nexo_live_gdh_auth_demo_secret_2026
       - SYSTEM_SLUG=gdh-auth-demo

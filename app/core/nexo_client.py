@@ -14,7 +14,7 @@ async def report_exception_to_nexo(
     context_data: Optional[Dict[str, Any]] = None,
 ) -> Optional[Dict[str, Any]]:
     """Despacha un evento de excepción a NEXO GD vía API REST."""
-    url = f"{settings.NEXO_URL.rstrip('/')}/api/v1/events/report"
+    url = f"{settings.NEXO_URL.rstrip('/')}/api/v1/events/error"
     payload = {
         "error_type": type(exc).__name__,
         "error_message": str(exc),
@@ -22,16 +22,16 @@ async def report_exception_to_nexo(
         "endpoint": endpoint,
         "action": action,
         "user": user_identifier,
+        "terminal_id": "GS-SPS-AUTH-01",
         "module": "Autenticación",
         "environment": settings.ENVIRONMENT,
         "server_host": settings.SERVER_HOST,
         "container_name": settings.CONTAINER_NAME,
-        "context_data": context_data or {},
+        "context": context_data or {},
     }
 
     headers = {
-        "X-System-Slug": settings.SYSTEM_SLUG,
-        "X-Environment": settings.ENVIRONMENT,
+        "X-NEXO-API-KEY": settings.NEXO_API_KEY,
         "Content-Type": "application/json",
     }
 
