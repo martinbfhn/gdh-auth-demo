@@ -19,9 +19,9 @@ templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 @app.get("/", response_class=HTMLResponse)
 async def login_page(request: Request):
     return templates.TemplateResponse(
-        name="login.html",
-        context={
-            "request": request,
+        request,
+        "login.html",
+        {
             "server_host": settings.SERVER_HOST,
             "container_name": settings.CONTAINER_NAME,
         },
